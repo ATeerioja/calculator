@@ -33,6 +33,7 @@ button {
   align-self: flex-start;
   background-color: lightgray;
   width: 200px;
+  height: 28.8px;
 }
 
 p {

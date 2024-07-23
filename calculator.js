@@ -21,3 +21,17 @@ function operate(operator, num1, num2) {
     return divide(num1, num2);
   }
 }
+
+let Dvalue = document.querySelector("#inputField");
+const buttons = document.querySelectorAll("button");
+
+for(let i = 0; i<buttons.length; i++) {
+  buttons[i].addEventListener("click", () => {
+    Dvalue.append(buttons[i].textContent);
+  })
+}
+
+
+function calculator() {
+
+}
