@@ -1,9 +1,4 @@
 //Simple math operators
-const num1 = "";
-const num2 = "";
-const operator = "";
-
-
 let add = (num1, num2) => num1 + num2;
 let subtract = (num1, num2) => num1 - num2;
 let multiply = (num1, num2) => num1 * num2;
@@ -31,7 +26,19 @@ for(let i = 0; i<buttons.length; i++) {
   })
 }
 
+buttons[buttons.length - 2].addEventListener("click", () => {
+  calculator(Dvalue);
+})
 
-function calculator() {
+buttons[buttons.length - 1].addEventListener("click", () => {
+  Dvalue.textContent = "";
+})
 
+
+function calculator(input) {
+  console.log(Dvalue);
 }
+
+
+//X amount of numbers and one operator followed by X amount of numbers
+
