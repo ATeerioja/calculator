@@ -35,10 +35,60 @@ buttons[buttons.length - 1].addEventListener("click", () => {
 })
 
 
-function calculator(input) {
-  const operatorFilter = "+-*/=C";
+function calculator(input) { 
+  let list = correctNumbers(input.split(""));
+
+  //To do division and multiplication first we need to get need
+  //to calculate how many appear in the calculation
+  multiplyAndDivide = calculateOperators(list, "*") + calculateOperators(list, "/");
+
+  for(let i = 0; i<multiplyAndDivide; i++) {
+    list = (operateOnce(list, "*", "/"));
+  }
+
+  addAndReduce = calculateOperators(list, "+") + calculateOperators(list, "-");
+
+  for(let i = 0; i<addAndReduce; i++) {
+    list = (operateOnce(list, "+", "-"));
+  }
+
+  function operateOnce (list, operator1, operator2) {
+    for(let i = 0; i < list.length; i++) {
+      if(list[i] === operator1 || list[i] === operator2) {
+        let tempArray = [];
+        let num = operate(list[i], Number(list[i-1]), Number(list[i+1]));
+        
+        for(let x = 0; x < list.length; x++) {
+          if(x === i-1 || x === i+1) {
+
+          } else if(x === i) {
+            tempArray.push(num);
+          } else {
+            tempArray.push(list[x]);
+          }
+        }
+
+        return(tempArray);
+
+      }
+    }
+  }
+ 
+  function calculateOperators(list, operator) {
+    i = 0;
+  
+    for(char of list) {
+      if(char === operator) {
+        i++;
+      }
+    }
+
+    return i;
+  }
 
   function correctNumbers(list) {
+    const operatorFilter = "+-/*=C"
+
     let correctedNumbersList = [];
     let number = "";
 
@@ -54,28 +104,6 @@ function calculator(input) {
     return(correctedNumbersList);
   }
 
-  function calculate(list) {
-    //multiply and divide
-    multipliedAndDivided = list;
-
-    for(let i = 0; i<list.length; i++) {
-      if(list[i] === "*" || list[i] === "/") {
-        console.log("hello")
-        let num = operate(list[i], list[i-1], list[i+1]);
-        console.log(num);
-        multipliedAndDivided = multipliedAndDivided.slice(list[i-1], list[i+1]);
-        console.log(multipliedAndDivided);
-      } 
-    }
-
-
-
-  }
-  
-  let list = correctNumbers(input.split(""))
-  console.log(list);
-  calculate(list);
+  return(String(list[0]));
   
 }
-
-calculator("2*4/2=");
